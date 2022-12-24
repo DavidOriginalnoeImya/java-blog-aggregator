@@ -22,22 +22,4 @@ public class AllCategoriesService {
 		}
 		return result;
 	}
-
-	public Integer[] getSelectedCategories(String selectedCategoriesString) {
-		Integer[] selectedCategories;
-		if (selectedCategoriesString == null) {
-			selectedCategories = getAllCategoryIds();
-		} else {
-			String[] strings = selectedCategoriesString.replace("[", "").replace("]", "").split(",");
-			List<Integer> selectedCategoriesList = new ArrayList<>();
-			for (String string : strings) {
-				if (!string.trim().isEmpty()) {
-					selectedCategoriesList.add(Integer.parseInt(string.trim()));
-				}
-			}
-			selectedCategories = selectedCategoriesList.toArray(new Integer[] {});
-		}
-		return selectedCategories;
-	}
-
 }
