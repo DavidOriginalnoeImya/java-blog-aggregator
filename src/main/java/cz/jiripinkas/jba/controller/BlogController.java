@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,6 +45,8 @@ public class BlogController {
 	private void findBlog(String shortName, Model model) {
 		Blog blog = blogService.findByShortName(shortName);
 		if (blog == null) {
+			log.info("::::::::::here");
+
 			log.warn("Blog not found {}", shortName);
 			throw new PageNotFoundException();
 		}
@@ -97,7 +100,7 @@ public class BlogController {
 	@RequestMapping("/blog/shortname/available")
 	@ResponseBody
 	public String available(@RequestParam String shortName) {
-		Boolean available = blogService.findByShortName(MyUtil.generatePermalink(shortName)) == null;
+		Boolean available = blogService.findByShortName(MyUtil.generatePermalink(shortName)) != null;
 		return available.toString();
 	}
 

@@ -33,9 +33,9 @@ public class RegisterController {
 
 	@PostMapping
 	public ModelAndView doRegister(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(required = false) String passCode) {
-		if(!"fuckSpam".equals(passCode)) { // simple spam protection
-			return new ModelAndView("register");
-		}
+//		if(!"fuckSpam".equals(passCode)) { // simple spam protection
+//			return new ModelAndView("register");
+//		}
 		if (result.hasErrors()) {
 			return new ModelAndView("register");
 		}

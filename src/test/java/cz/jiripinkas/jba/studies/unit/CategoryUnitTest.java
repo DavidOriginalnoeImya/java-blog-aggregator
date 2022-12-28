@@ -4,31 +4,20 @@ import cz.jiripinkas.jba.dto.CategoryDto;
 import cz.jiripinkas.jba.entity.Category;
 import cz.jiripinkas.jba.service.AllCategoriesService;
 import cz.jiripinkas.jba.service.CategoryService;
-import io.restassured.RestAssured;
-import io.restassured.common.mapper.TypeRef;
 import org.jboss.logging.Logger;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,20 +31,9 @@ public class CategoryUnitTest {
     @Autowired
     CategoryService categoryService;
 
-//    @Autowired
-//    MockMvc mvc;
-
-    @LocalServerPort
-    int port;
-
     private static final String categoryName = "Reddit";
 
     private static final String categoryShortName = "reddit";
-
-    @Before
-    public void init() {
-        RestAssured.port = port;
-    }
 
     @Test
     public void testGetOneCategoriesId() {
